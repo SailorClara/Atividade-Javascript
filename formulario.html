@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .mg_erro{
+            color: red;
+            display: none;
+            font-style: italic;
+        }
+        .botaoEnviar{
+            background-color: green;
+            border-left-color: green;
+            border-right-color: green;
+            border-top-color: green;
+            border-bottom-color: green;
+            color: white;
+            border-radius: 10px 10xp 10xp 10px;
+        }
+        .botaoReset{
+            background-color: red;
+            border-left-color: red;
+            border-right-color: red;
+            border-top-color: red;
+            border-bottom-color: red;
+            color: white;
+            border-radius: 10px 10xp 10xp 10px;
+        }
+        body{
+            background-color: rgb(226, 138, 226);
+        }
+        .conteiner{
+            padding: 5%;
+            position: relative;
+            width: 35%;
+            left: 40%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center">Formulario</h1>
+    <div class="conteiner">
+        <form>
+            <div>
+                Nome: 
+                <span class="mg_erro mg_nome">Campo Obrigatorio</span>
+                <span class="mg_erro mg_nomeInvalido">Campo invalido</span><br>
+                <input type="text" id="nome" name="namo"/>
+            </div>
+            
+            <div>
+                Email: 
+                <span class="mg_erro mg_email">Campo Obrigatorio</span>
+                <span class="mg_erro mg_emailInvalido">Campo invalido</span><br>
+                <input type="email" id="email" name="email"/>
+            </div>
+            
+            <div>
+                Cpf: 
+                <span class="mg_erro mg_cpf">Campo Obrigatorio</span>
+                <span class="mg_erro mg_cpfInvalido">Campo invalido</span><br>
+                <input type="text" id="cpf" name="cpf"/>
+            </div>
+            
+            <label>Sexo: </label>
+    
+            <div>
+                <select name="sexo" id="sexo">
+                    <option>Feminino</option>
+                    <option>Masculino</option>
+                    <option>Outros</option>
+                </select>
+            </div>
+    
+            <label>Módulo</label>
+    
+            <div>
+                <input type="radio" id="PrimeiroModulo" name="Modulo" checked/>
+                <label>Primeiro Modulo<br></label>
+                <input type="radio" id="SegundoModulo" name="Modulo"/>
+                <label>Segundo Modulo<br></label>
+                <input type="radio" id="TerceiroModulo" name="Modulo"/>
+                <label>Terceiro Modulo<br></label>
+            </div>
+    
+            <label>Áreas preferidas</label> 
+            <span class="mg_erro mg_checkBox">Campo Obrigatorio</span>
+    
+            <div>
+                <input type="checkbox" id="Programacao" name="checkbox">
+                <label>Programação<br></label>
+                <input type="checkbox" id="Redes" name="checkbox">
+                <label>Redes de computadores<br></label>
+                <input type="checkbox" id="Manutencao" name="checkbox">
+                <label>Manutenção de computadores<br></label>
+            </div>
+            <div>
+                <div>
+                    <label>Senha: </label>
+                    <span class="mg_erro mg_senha">Campo Obrigatorio</span>
+                    <span class="mg_erro mg_senhasDiferentes">senhas direferentes</span>
+                    <span class="mg_erro mg_senhaInvalido">Campo invalido</span><br>
+                    <input type="password" id="Senha" name="senha"><br>
+                </div>
+                <div>
+                    <label>Confirmaçao: </label>
+                    <span class="mg_erro mg_confirmacao">Campo Obrigatorio</span>
+                    <span class="mg_erro mg_confirmacaoInvalido">Campo invalido</span><br>
+                    <input type="password" id="Confirmacao" name="confirmacao">
+                </div>
+            </div>
+            <div>
+                <input type="button" class="botaoEnviar" onclick="validar()" id="enviar" name="enviar" value="enviar">
+                <input type="reset" class="botaoReset" id="reset" name="reset" value="reset">
+                
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+
+function validar(){
+
+    var nome = document.getElementById("nome");
+    var spanNome = document.querySelector(".mg_nome");
+    var spanNomeInvalido = document.querySelector(".mg_nomeInvalido");
+
+    if(nome.value==""){
+        spanNome.style.display = "inline-block";
+        spanNomeInvalido.style.display = "none";
+        return;
+    }
+    else{
+        spanNome.style.display = "none";
+        if(nome.value.length < 4){
+            spanNomeInvalido.style.display = "inline-block";
+            return;
+        }
+        else{
+            spanNomeInvalido.style.display = "none";
+        }
+    }
+
+    var email = document.getElementById("email");
+    var spanEmail = document.querySelector(".mg_email");
+    var spanEmailInvalidado = document.querySelector(".mg_emailInvalido");
+
+    if(email.value==""){
+        spanEmail.style.display = "inline-block";
+        spanEmailInvalidado.style.display = "none";
+        return;
+    }
+    else{
+        spanEmail.style.display="none";
+        if(email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1){
+            spanEmailInvalidado.style.display = "inline-block";
+            return;
+        }
+        else{
+            spanEmailInvalidado.style.display = "none";
+        }
+    }
+    var cpf = document.getElementById("cpf");
+    var spanCpf = document.querySelector(".mg_cpf");
+    var spanCpfInvalido = document.querySelector(".mg_cpfInvalido");
+
+    if(cpf.value==""){
+        spanCpf.style.display = "inline-block";
+        spanCpfInvalido.style.display = "none";
+        return;
+    }
+    else{
+        spanCpf.style.display = "none";
+        if(cpf.value.length < 11){
+            spanCpfInvalido.style.display = "inline-block";
+            return;
+        }
+        else{
+            spanCpfInvalido.style.display = "none";
+        }
+    }
+
+    var checkbox = document.getElementsByName("checkbox");
+    var spanCheckbox = document.querySelector(".mg_checkBox");
+    var checkboxMarcados = 0;
+    for(var i = 0; i < checkbox.length;i++){
+        if(checkbox[i].checked == true){
+            checkboxMarcados++;
+        }
+    }
+    if(checkboxMarcados == 0){
+        spanCheckbox.style.display = "inline-block";
+        return;
+    }
+    else{
+        spanCheckbox.style.display = "none";
+    }
+
+    var senha = document.getElementById("Senha");
+    var spanSenha = document.querySelector(".mg_senha");
+    var spanSenhaInvalido = document.querySelector(".mg_senhaInvalido");
+
+    var confirmacao = document.getElementById("Confirmacao");
+    var spanConfirmacao = document.querySelector(".mg_confirmacao");
+    var spanConfirmacaoInvalido = document.querySelector(".mg_confirmacaoInvalido");
+
+    var spanSenhasDiferentes = document.querySelector(".mg_senhasDiferentes");
+
+
+    if(senha.value==""){
+        spanSenha.style.display = "inline-block";
+        spanSenhaInvalido.style.display = "none";
+        return;
+    }
+    else{
+        spanSenha.style.display = "none";
+        if(senha.value.length < 6){
+            spanSenhaInvalido.style.display = "inline-block";
+            return;
+        }
+        else{
+            spanSenhaInvalido.style.display = "none";
+            if(confirmacao.value == ""){
+                spanConfirmacao.style.display="inline-block";
+                spanConfirmacaoInvalido.style.display="none";
+                return;
+            }
+            else{
+                spanConfirmacao.style.display = "none";
+                if(confirmacao.value.length < 6){
+                    spanConfirmacaoInvalido.style.display="inline-block";
+                    return;
+                }
+                else{
+                    spanConfirmacaoInvalido.style.display="none";
+
+                    if(senha.value == confirmacao.value){
+                        spanSenhasDiferentes.style.display = "none";
+                    }
+                    else{
+                        spanSenhasDiferentes.style.display = "inline-block"
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    alert("Cadastro Concluido");
+}
+
+
+
+</script>
+</html>
